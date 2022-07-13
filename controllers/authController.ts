@@ -8,7 +8,7 @@ const registerStudent = async (req: express.Request, res: express.Response, next
     // const body:Body = req.body
     // console.log(body);
     const st = new Student({...req.body})
-    await st.save({...req.body})
+    await st.save()
     const accessToken = st.createAccessToken()   
     res.status(StatusCodes.CREATED).send({
         data:{
