@@ -33,7 +33,6 @@ const loginStudent = async (req: express.Request, res: express.Response, next: N
     }
     
     const isEqualPass = await st.comparePassword(password)
-    console.log(isEqualPass);
     if(!isEqualPass){
         const error = new Error('Incorrect password provided')
         return next(error)

@@ -101,7 +101,7 @@ export default class Student extends Model{
 
   async comparePassword(rawPassword: string){
     console.log('Compare password func');
-    const isEqual = await bcrypt.compare(this.password, rawPassword)
+    const isEqual = await bcrypt.compare(rawPassword, this.password)
     return isEqual
   }
 }
