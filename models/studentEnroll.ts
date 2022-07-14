@@ -1,8 +1,8 @@
 import { DataType, Table, Column, Model, ForeignKey } from 'sequelize-typescript'
-import Student from './student'
+import User from './user'
 import Class from './class'
 @Table({
-  tableName:'Students',
+  tableName:'StudentEnrolls',
   timestamps: false
 })
 export default class StudentEnroll extends Model{
@@ -15,7 +15,7 @@ export default class StudentEnroll extends Model{
         }
     }
   })
-  @ForeignKey(() => Student)
+  @ForeignKey(() => User)
   studentId?:string
  
   @Column({

@@ -1,29 +1,35 @@
 export const typeDefs = /* GraphQL */ `
-  type Student {
+  type User {
     id: String
     name: String
     email: String
     password: String
     accessToken: String
     refreshToken:String
+    role:String
+    tokenCounter:Int
     classes: [Class]
   }
+
 
   type Class {
     id: String
     name: String
-    students:[Student]
+    students:[User]
   }
 
   type Query {
     hello: String
-    students: [Student]
+    users: [User]
+    students: [User]
+    teachers: [User]
   }
 
   # this schema allows the following mutation:
   type Mutation {
-    createStudent(name:String, email:String, password: String):Student
-    loginStudent(email:String, password:String):Student
+    createUser(name:String, email:String, password: String, role: String):User
+    loginUser(email:String, password:String):User
+    changePasswordUser(oldPassword:String, newPassword: String):User
   }
 `
 

@@ -3,10 +3,10 @@ import bcrypt from 'bcryptjs'
 import 'dotenv/config'
 import jwt from 'jsonwebtoken'
 @Table({
-  tableName:'Students',
+  tableName:'Users',
   timestamps: false
 })
-export default class Student extends Model{
+export default class User extends Model{
   @Column({
     type: DataType.UUIDV4,
     defaultValue: DataType.UUIDV4,
@@ -16,7 +16,6 @@ export default class Student extends Model{
   
 
   @Column({
-    unique: true,
     allowNull: false,
     type: DataType.TEXT,
     validate: {
@@ -64,7 +63,21 @@ export default class Student extends Model{
   password!: string
   
   @Column({
-    allowNull: true,
+    allowNull: false,
+    type: DataType.ENUM('student', 'teacher'),
+    defaultValue: 'student',
+    validate: {
+      notEmpty: {
+        msg: 'Role not accept empty'
+      },
+      notNull: {
+        msg: 'Role not accept null'
+      }
+    }
+  })
+  role!: string
+
+  @Column({
     type: DataType.ARRAY(DataType.TEXT),
     validate: {
       notEmpty: {
@@ -74,9 +87,23 @@ export default class Student extends Model{
   })
   refreshTokens?: string[]
 
-  @BeforeUpdate
+
+  @Column({
+    allowNull: false,
+    type: DataType.BIGINT,
+    defaultValue: 0,
+    validate: {
+      notEmpty: {
+        msg: 'Not allow empty refreshtoken'
+      },
+    }
+  })
+  tokenCounter!: number;
+
   @BeforeCreate
-  static async hashPassword(instance: Student){
+  @BeforeUpdate
+  static async hashPassword(instance: User){
+    console.log('object');
     const salt = await bcrypt.genSalt(10)
     instance.password = await bcrypt.hash(instance.password, salt)   
   }
@@ -85,7 +112,9 @@ export default class Student extends Model{
     console.log('Create new access token');
     const data = {
       email: this.email,
-      name: this.name
+      name: this.name,
+      role: this.role,
+      tokenCounter: this.tokenCounter
     }
     return jwt.sign({ data }, process.env.JWT_SECRET! ,  { expiresIn: process.env.ACCESS_LIFETIME })
   }
@@ -94,7 +123,9 @@ export default class Student extends Model{
     console.log('Create new refresh token');
     const data = {
       email: this.email,
-      name: this.name
+      name: this.name,
+      role: this.role,
+      tokenCounter: this.tokenCounter
     }
     return jwt.sign({ data }, process.env.JWT_SECRET! ,  { expiresIn: process.env.REFRESH_LIFETIME })
   }

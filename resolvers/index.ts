@@ -1,17 +1,23 @@
 import { 
-    registerStudentResolver, 
-    loginStudentResolver,
-    getAllStudent
-} from "./studentResolvers"
+    registerUserResolver, 
+    loginUserResolver,
+    getAllType,
+    changePasswordUserResolver,
+    // deleteStudent, 
+} from "./userResolvers"
 const resolvers = {
     Query: {
         hello: () => 'Hello world',
-        students: getAllStudent,
+        users: getAllType,
+        teachers: () => getAllType('teacher'),
+        students: () => getAllType('student'),
         // classes: getAllClass
     },
     Mutation: {
-        createStudent: registerStudentResolver,
-        loginStudent: loginStudentResolver
+        createUser: registerUserResolver,
+        loginUser: loginUserResolver,
+        changePasswordUser: changePasswordUserResolver
+        // deleteStudent: deleteStudent
     }
     
 }
