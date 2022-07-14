@@ -2,11 +2,13 @@ import { rule } from 'graphql-shield'
 import {GraphQLYogaError} from '@graphql-yoga/node'
 
 const isTeacher = rule()((parent, args, ctx, info) => {
+    console.log(args.user);
+    console.log(args);
     if(!args.user){
-        return false
+        return new GraphQLYogaError('Unauthorized user')
     }
     if(args.user.role != 'teacher'){
-        return false
+        return new GraphQLYogaError('Only teacher can delete student')
     }
     return true
 })

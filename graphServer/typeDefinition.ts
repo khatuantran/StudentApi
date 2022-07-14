@@ -30,6 +30,7 @@ export const typeDefs = /* GraphQL */ `
     createUser(name:String, email:String, password: String, role: String):User
     loginUser(email:String, password:String):User
     changePasswordUser(oldPassword:String, newPassword: String):User
+    deleteStudent(studentId:String):User
   }
 `
 

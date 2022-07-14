@@ -109,10 +109,6 @@ const changePasswordUserResolver = async (parent:any, args:any, ctx:any, info:an
         user.password = newPassword
         user.tokenCounter = Number(user.tokenCounter) + Number(1)
         user.save()
-        // const updated = await user.update(
-        //     { password: newPassword},
-        //     { where: { email: args.user.email } }
-        // )
         return {
             id: user.id,
             email: user.email,
@@ -124,5 +120,23 @@ const changePasswordUserResolver = async (parent:any, args:any, ctx:any, info:an
     }
 }
 
+const deleteStudent = async (parent:any, args:any) => {
+    try {
+        console.log(args.studentId);
+        const affected = await User.destroy({ where: { id: args.studentId, role: 'student'}})
+        if(!affected){
+            return new GraphQLYogaError("Can't find the student")
+        }
+        return {};
+    } catch (error:any) {
+        return new GraphQLYogaError(error.message || 'Something was wrong please try again')
+    }
+}
 
-export { registerUserResolver, loginUserResolver, getAllType , changePasswordUserResolver}
+export { 
+    registerUserResolver, 
+    loginUserResolver, 
+    getAllType ,
+    changePasswordUserResolver,
+    deleteStudent
+}

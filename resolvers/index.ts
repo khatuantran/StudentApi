@@ -3,7 +3,7 @@ import {
     loginUserResolver,
     getAllType,
     changePasswordUserResolver,
-    // deleteStudent, 
+    deleteStudent, 
 } from "./userResolvers"
 const resolvers = {
     Query: {
@@ -16,8 +16,8 @@ const resolvers = {
     Mutation: {
         createUser: registerUserResolver,
         loginUser: loginUserResolver,
-        changePasswordUser: changePasswordUserResolver
-        // deleteStudent: deleteStudent
+        changePasswordUser: changePasswordUserResolver,
+        deleteStudent: deleteStudent
     }
     
 }

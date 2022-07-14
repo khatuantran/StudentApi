@@ -15,14 +15,14 @@ const isAuthenticated = rule()(async (parent, args, ctx, info) => {
         if(user && user.tokenCounter == 99999){
             await User.update({ tokenCounter: 1 },{ where: { email:payload.data.email } })
         }
-        console.log(payload.data.tokenCounter);
-        console.log(user!.tokenCounter);
+        // console.log(payload.data.tokenCounter);
+        // console.log(user!.tokenCounter);
         if(user && (payload.data.tokenCounter != user.tokenCounter)){
             return new GraphQLYogaError('Invalid token')
         }
         args.user = payload.data;
         return true
-      } catch(err) {
+      } catch(err:any) {
         console.log(err)
         return new GraphQLYogaError('Invalid token')
     }  
