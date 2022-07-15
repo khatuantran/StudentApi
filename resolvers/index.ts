@@ -3,7 +3,8 @@ import {
     loginUserResolver,
     getAllTypeResolver,
     changePasswordUserResolver,
-    deleteStudentResolver, 
+    deleteStudentResolver,
+    enrollClassResolver, 
 } from "./userResolvers"
 
 import { 
@@ -28,6 +29,7 @@ const resolvers = {
         createClass: createClassResolver,
         editClass: editClassResolver,
         deleteClass: deleteClassResolver,
+        enrollClass: enrollClassResolver,
     }
     
 }

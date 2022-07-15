@@ -1,4 +1,5 @@
 import User from '../models/user'
+import studentEnroll from '../models/studentEnroll'
 import sequelize from 'sequelize'
 import {GraphQLYogaError} from '@graphql-yoga/node'
 
@@ -133,10 +134,34 @@ const deleteStudentResolver = async (parent:any, args:any) => {
     }
 }
 
+const enrollClassResolver = async (parent:any, args:any) => {
+    const userId = args.user.id
+    const classId = args.classId
+    console.log(args.user);
+    console.log(classId);
+
+    if(!classId){
+        return new GraphQLYogaError('Please provide class ID')
+    }
+    try {
+        const stEnroll = await studentEnroll.create({
+            studentId: userId,
+            classId: classId
+        })
+        return {}
+    } catch (err:any) {
+        console.log(err);
+        if(err.name == 'SequelizeUniqueConstraintError')
+            return new GraphQLYogaError(`This user has joined this class`)
+        return new GraphQLYogaError(err.message)
+    }
+}
+
 export { 
     registerUserResolver, 
     loginUserResolver, 
     getAllTypeResolver,
     changePasswordUserResolver,
     deleteStudentResolver,
+    enrollClassResolver,
 }

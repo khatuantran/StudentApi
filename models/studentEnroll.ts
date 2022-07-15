@@ -11,7 +11,7 @@ export default class StudentEnroll extends Model{
     type: DataType.UUIDV4,
     primaryKey: true,
     validate: {
-        isEmpty: {
+        notEmpty: {
             msg: 'Student id not accept empty'
         }
     }
@@ -23,7 +23,7 @@ export default class StudentEnroll extends Model{
     primaryKey: true,
     type: DataType.UUIDV4,
     validate: {
-        isEmpty: {
+        notEmpty: {
             msg: 'Class id not accept empty'
         }
     }

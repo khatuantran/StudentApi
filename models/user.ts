@@ -116,6 +116,7 @@ export default class User extends Model{
   createAccessToken(){
     console.log('Create new access token');
     const data = {
+      id:this.id,
       email: this.email,
       name: this.name,
       role: this.role,
@@ -127,6 +128,7 @@ export default class User extends Model{
   createRefreshToken(){
     console.log('Create new refresh token');
     const data = {
+      id: this.id,
       email: this.email,
       name: this.name,
       role: this.role,

@@ -35,6 +35,7 @@ export const typeDefs = /* GraphQL */ `
     createClass(name:String):Class
     editClass(id: String, name:String):User
     deleteClass(id:String):User
+    enrollClass(classId: String):Class
   }
 `
 
