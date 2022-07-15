@@ -6,16 +6,18 @@ import { shield, chain } from 'graphql-shield'
 import { applyMiddleware } from 'graphql-middleware'
 import isAuthenticated from '../middlewares/isAuthenticated'
 import isTeacher from '../middlewares/isTeacher'
+
+
 const schema = makeExecutableSchema({ typeDefs, resolvers })
-
-
 const permistions = shield({
     Query:{
        
     },
     Mutation: {
         changePasswordUser: isAuthenticated,
-        deleteStudent: chain(isAuthenticated,isTeacher)
+        deleteStudent: chain(isAuthenticated, isTeacher), //Apply ordering middleware
+        createClass: chain(isAuthenticated, isTeacher),
+        deleteClass: chain(isAuthenticated, isTeacher),
     }
 })
 

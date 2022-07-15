@@ -4,7 +4,7 @@ import User from '../models/user'
 import jwt from 'jsonwebtoken'
 
 const isAuthenticated = rule()(async (parent, args, ctx, info) => {
-    const token = ctx.request.headers.get('x-auth-token').split(' ')[1];
+    const token = ctx.request.headers.get('x-auth-token')?.split(' ')[1];
     if(!token){
         console.log('None header token');
         return new GraphQLYogaError('Missing x-auth-token header')

@@ -8,7 +8,7 @@ const isTeacher = rule()((parent, args, ctx, info) => {
         return new GraphQLYogaError('Unauthorized user')
     }
     if(args.user.role != 'teacher'){
-        return new GraphQLYogaError('Only teacher can delete student')
+        return new GraphQLYogaError('Only teacher can do this action')
     }
     return true
 })

@@ -23,6 +23,7 @@ export const typeDefs = /* GraphQL */ `
     users: [User]
     students: [User]
     teachers: [User]
+    classes: [Class]
   }
 
   # this schema allows the following mutation:
@@ -31,6 +32,9 @@ export const typeDefs = /* GraphQL */ `
     loginUser(email:String, password:String):User
     changePasswordUser(oldPassword:String, newPassword: String):User
     deleteStudent(studentId:String):User
+    createClass(name:String):Class
+    editClass(id: String, name:String):User
+    deleteClass(id:String):User
   }
 `
 

@@ -14,11 +14,12 @@ export default class Class extends Model{
   @Column({
     allowNull: false,
     type: DataType.TEXT,
+    unique: true,
     validate: {
-      IsEmpty: {
+      notEmpty: {
         msg: 'class name not accept empty'
       },
-      IsNull: {
+      notNull: {
         msg: 'class name not accept empty'
       }
     }

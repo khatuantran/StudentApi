@@ -71,7 +71,7 @@ const loginUserResolver = async  (parent:any, args:any)  => {
 
 
 
-const getAllType = async  (role: string)  => {
+const getAllTypeResolver = async  (role: string)  => {
     try{ 
         const users = role == undefined ? await User.findAll() : await User.findAll({ where: { role } })
         console.log(users);
@@ -120,14 +120,14 @@ const changePasswordUserResolver = async (parent:any, args:any, ctx:any, info:an
     }
 }
 
-const deleteStudent = async (parent:any, args:any) => {
+const deleteStudentResolver = async (parent:any, args:any) => {
     try {
         console.log(args.studentId);
         const affected = await User.destroy({ where: { id: args.studentId, role: 'student'}})
         if(!affected){
             return new GraphQLYogaError("Can't find the student")
         }
-        return {};
+        return affected;
     } catch (error:any) {
         return new GraphQLYogaError(error.message || 'Something was wrong please try again')
     }
@@ -136,7 +136,7 @@ const deleteStudent = async (parent:any, args:any) => {
 export { 
     registerUserResolver, 
     loginUserResolver, 
-    getAllType ,
+    getAllTypeResolver,
     changePasswordUserResolver,
-    deleteStudent
+    deleteStudentResolver,
 }
