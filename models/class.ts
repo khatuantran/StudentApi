@@ -1,16 +1,19 @@
-import { DataType, Table, Column, Model } from 'sequelize-typescript'
-
+import { Sequelize, DataType, Table, Column, Model , BelongsToMany } from 'sequelize-typescript'
+import User from './user'
+import StudentEnroll from './studentEnroll'
 @Table({
   tableName:'Classes',
   timestamps: false
 })
 export default class Class extends Model{
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
-    primaryKey: true,
+    primaryKey: true, 
   })
   id!:string
+  
+  
   @Column({
     allowNull: false,
     type: DataType.TEXT,
@@ -25,4 +28,8 @@ export default class Class extends Model{
     }
   })
   name!: string
+  
+  
+  @BelongsToMany(() => User, () => StudentEnroll, 'classId')
+  users?: User[]
 }

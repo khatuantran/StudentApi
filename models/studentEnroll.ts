@@ -6,6 +6,7 @@ import Class from './class'
   timestamps: false
 })
 export default class StudentEnroll extends Model{
+  @ForeignKey(() => User)
   @Column({
     type: DataType.UUIDV4,
     primaryKey: true,
@@ -15,9 +16,9 @@ export default class StudentEnroll extends Model{
         }
     }
   })
-  @ForeignKey(() => User)
-  studentId?:string
- 
+  studentId!:string
+  
+  @ForeignKey(() => Class)
   @Column({
     primaryKey: true,
     type: DataType.UUIDV4,
@@ -27,6 +28,5 @@ export default class StudentEnroll extends Model{
         }
     }
   })
-  @ForeignKey(() => Class)
   classId!: string
 }

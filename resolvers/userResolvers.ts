@@ -123,7 +123,7 @@ const changePasswordUserResolver = async (parent:any, args:any, ctx:any, info:an
 const deleteStudentResolver = async (parent:any, args:any) => {
     try {
         console.log(args.studentId);
-        const affected = await User.destroy({ where: { id: args.studentId, role: 'student'}})
+        const affected = await User.destroy({ where: { id: args.studentId, role: 'student' }})
         if(!affected){
             return new GraphQLYogaError("Can't find the student")
         }

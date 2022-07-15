@@ -1,17 +1,22 @@
-import { DataType, Table, Column, Model, BeforeUpdate, BeforeCreate } from 'sequelize-typescript'
+import { DataType, Table, Column, Model, BeforeUpdate, BeforeCreate, BelongsToMany } from 'sequelize-typescript'
 import bcrypt from 'bcryptjs'
 import 'dotenv/config'
 import jwt from 'jsonwebtoken'
+import StudentEnroll from './studentEnroll'
+import Class from './class'
 @Table({
   tableName:'Users',
   timestamps: false
 })
 export default class User extends Model{
+  @BelongsToMany(() => Class, () => StudentEnroll, 'studentId')
+  classes?:Class[]
+  
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
     primaryKey: true,
-  })
+  })  
   id!:string 
   
 

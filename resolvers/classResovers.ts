@@ -26,6 +26,10 @@ const editClassResolver = async (parent:any, args:any) => {
     try {
         const { name } = args
         const affected = await Class.update({ name }, { where: { id: args.id } })
+        
+        if(Number(affected.toString()) === 0){
+            return new GraphQLYogaError("Can't find any class match this request")
+        }
         return { }
     } catch (error:any) {
         console.log(error);

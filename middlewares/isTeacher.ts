@@ -2,8 +2,8 @@ import { rule } from 'graphql-shield'
 import {GraphQLYogaError} from '@graphql-yoga/node'
 
 const isTeacher = rule()((parent, args, ctx, info) => {
-    console.log(args.user);
-    console.log(args);
+    // console.log(args.user);
+    // console.log(args);
     if(!args.user){
         return new GraphQLYogaError('Unauthorized user')
     }

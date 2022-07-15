@@ -18,4 +18,13 @@ const sequelize = new Sequelize('StudentApi', 'postgres', '01684748451Aa', {
 
 
 sequelize.addModels([__dirname + '/../models'])
+// const go = async () => {
+//   try {
+//     await sequelize.sync({force: true});
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+// go()
+
 export default sequelize
