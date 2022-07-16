@@ -52,9 +52,24 @@ const deleteClassResolver = async (parent:any, args:any) => {
     }
 }
 
+const getUserByClassResolver = async (parent:any, args:any) => {
+    try {
+        const record:any = await Class.findOne({ where: { id: parent.id } })
+        const userOfClass = await record.getUsers()
+        // console.log(classOfUser);
+        return userOfClass
+
+    } catch (error:any) {
+        console.log(error);
+        return new GraphQLYogaError(error.message || 'Something was wrong please try again')
+    }
+
+}
+
 export {
     createClassResolver,
     getAllClassResolver,
     editClassResolver,
     deleteClassResolver,
+    getUserByClassResolver,
 }

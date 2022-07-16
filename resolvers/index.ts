@@ -5,6 +5,7 @@ import {
     changePasswordUserResolver,
     deleteStudentResolver,
     enrollClassResolver, 
+    getClassByUserResolver,
 } from "./userResolvers"
 
 import { 
@@ -12,6 +13,8 @@ import {
     getAllClassResolver,
     editClassResolver,
     deleteClassResolver,
+    getUserByClassResolver
+
 } from './classResovers'
 const resolvers = {
     Query: {
@@ -30,8 +33,13 @@ const resolvers = {
         editClass: editClassResolver,
         deleteClass: deleteClassResolver,
         enrollClass: enrollClassResolver,
+    },
+    User: {
+        classes: getClassByUserResolver
+    },
+    Class: {
+        users: getUserByClassResolver
     }
-    
 }
 
 export default resolvers

@@ -1,5 +1,5 @@
 import User from '../models/user'
-import studentEnroll from '../models/studentEnroll'
+import StudentEnroll from '../models/studentEnroll'
 import sequelize from 'sequelize'
 import {GraphQLYogaError} from '@graphql-yoga/node'
 
@@ -144,7 +144,7 @@ const enrollClassResolver = async (parent:any, args:any) => {
         return new GraphQLYogaError('Please provide class ID')
     }
     try {
-        const stEnroll = await studentEnroll.create({
+        const stEnroll = await StudentEnroll.create({
             studentId: userId,
             classId: classId
         })
@@ -157,6 +157,21 @@ const enrollClassResolver = async (parent:any, args:any) => {
     }
 }
 
+
+const getClassByUserResolver = async (parent:any, args:any) => {
+    try {
+        const record:any = await User.findOne({ where: { id: parent.id } })
+        const classOfUser = await record.getClasses()
+        // console.log(classOfUser);
+        return classOfUser
+
+    } catch (error:any) {
+        console.log(error);
+        return new GraphQLYogaError(error.message || 'Something was wrong please try again')
+    }
+
+}
+
 export { 
     registerUserResolver, 
     loginUserResolver, 
@@ -164,4 +179,5 @@ export {
     changePasswordUserResolver,
     deleteStudentResolver,
     enrollClassResolver,
+    getClassByUserResolver
 }

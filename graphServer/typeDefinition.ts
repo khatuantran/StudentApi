@@ -15,7 +15,7 @@ export const typeDefs = /* GraphQL */ `
   type Class {
     id: String
     name: String
-    students:[User]
+    users:[User]
   }
 
   type Query {
@@ -31,7 +31,7 @@ export const typeDefs = /* GraphQL */ `
     createUser(name:String, email:String, password: String, role: String):User
     loginUser(email:String, password:String):User
     changePasswordUser(oldPassword:String, newPassword: String):User
-    deleteStudent(studentId:String):User
+    deleteStudent(studentId:String):String
     createClass(name:String):Class
     editClass(id: String, name:String):User
     deleteClass(id:String):User
