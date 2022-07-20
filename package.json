@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./bin/www.ts"
+    "start": "ts-node ./bin/www.ts",
+    "dev": "nodemon ./bin/www.ts",
+    "migrate": "ts-node ./db/migration",
+    "seed": "ts-node ./db/seeder"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +36,7 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/http-status-codes": "^1.2.0",
-    "@types/node": "^18.0.3"
+    "@types/node": "^18.0.3",
+    "sequelize-cli": "^6.4.1"
   }
 }
