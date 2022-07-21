@@ -59,7 +59,7 @@ const classCreateDummyData = async (): Promise<Class[]> => {
                 classId: classes[0].id,
             },
             {
-                studentId: users[2].id,
+                studentId: users[1].id,
                 classId: classes[2].id,
             },
         ], { validate: true })
