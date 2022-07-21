@@ -30,7 +30,9 @@ const editClassResolver = async (parent:any, args:any) => {
         if(Number(affected.toString()) === 0){
             return new GraphQLYogaError("Can't find any class match this request")
         }
-        return { }
+        return {
+            message: 'Class updated'
+         }
     } catch (error:any) {
         console.log(error);
         if(error.name == 'SequelizeUniqueConstraintError')
@@ -45,7 +47,9 @@ const deleteClassResolver = async (parent:any, args:any) => {
         if(!affected){
             return new GraphQLYogaError("Can't find any class match this request")
         }
-        return { }
+        return { 
+            message: 'Class deleted'
+        }
     } catch (error:any) {
         console.log(error);
         return new GraphQLYogaError(error.message || 'Something was wrong please try again')

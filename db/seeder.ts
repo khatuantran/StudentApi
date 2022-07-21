@@ -29,7 +29,7 @@ const userCreateDummyData = async (): Promise<User[]> => {
             password: 'dummy',
             role: 'student',
         },
-    ], { validate: true })
+    ], { validate: true , individualHooks: true})
 }
 const classCreateDummyData = async (): Promise<Class[]> => {
     return Class.bulkCreate([

@@ -17,7 +17,9 @@ export const typeDefs = /* GraphQL */ `
     name: String
     users:[User]
   }
-
+  type ResponeMessage{
+    message: String
+  }
   type Query {
     hello: String
     users: [User]
@@ -25,22 +27,17 @@ export const typeDefs = /* GraphQL */ `
     teachers: [User]
     classes: [Class]
   }
-
+  
   # this schema allows the following mutation:
   type Mutation {
     createUser(name:String, email:String, password: String, role: String):User
     loginUser(email:String, password:String):User
-    changePasswordUser(oldPassword:String, newPassword: String):User
-    deleteStudent(studentId:String):String
+    changePasswordUser(oldPassword:String, newPassword: String):ResponeMessage
+    deleteStudent(studentId:String):ResponeMessage
     createClass(name:String):Class
-    editClass(id: String, name:String):User
-    deleteClass(id:String):User
-    enrollClass(classId: String):Class
+    editClass(id: String, name:String): ResponeMessage
+    deleteClass(id:String): ResponeMessage
+    enrollClass(classId: String): ResponeMessage
   }
 `
 
-// # the schema allows the following query:
-//   type Query {
-//     posts: [Post]
-//     author(id: Int!): Author
-//   }

@@ -18,6 +18,7 @@ const permistions = shield({
         deleteStudent: chain(isAuthenticated, isTeacher), //Apply ordering middleware
         createClass: chain(isAuthenticated, isTeacher),
         deleteClass: chain(isAuthenticated, isTeacher),
+        editClass: chain(isAuthenticated, isTeacher),
         enrollClass: isAuthenticated,
     }
 })

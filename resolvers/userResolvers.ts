@@ -111,10 +111,7 @@ const changePasswordUserResolver = async (parent:any, args:any, ctx:any, info:an
         user.tokenCounter = Number(user.tokenCounter) + Number(1)
         user.save()
         return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role,
+            message: 'Password changed'
         }
     } catch (err:any) {
         return new GraphQLYogaError(err.message || 'Something was wrong please try again')
@@ -128,7 +125,9 @@ const deleteStudentResolver = async (parent:any, args:any) => {
         if(!affected){
             return new GraphQLYogaError("Can't find the student")
         }
-        return affected;
+        return {
+            message: 'Student Deleted'
+        }
     } catch (error:any) {
         return new GraphQLYogaError(error.message || 'Something was wrong please try again')
     }
@@ -148,7 +147,9 @@ const enrollClassResolver = async (parent:any, args:any) => {
             studentId: userId,
             classId: classId
         })
-        return {}
+        return {
+            message: 'Eroll successfully'
+        }
     } catch (err:any) {
         console.log(err);
         if(err.name == 'SequelizeUniqueConstraintError')
