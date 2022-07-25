@@ -14,13 +14,14 @@
   "license": "ISC",
   "dependencies": {
     "@graphql-tools/schema": "^8.5.0",
-    "@graphql-yoga/node": "^2.13.1",
+    "@graphql-yoga/node": "^2.13.4",
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.8",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
+    "graphql": "^15.8.0",
     "graphql-middleware": "^6.1.31",
     "graphql-shield": "^7.5.0",
     "http-status-code": "^2.1.0",
@@ -34,7 +35,6 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
-    "@types/http-status-codes": "^1.2.0",
     "@types/node": "^18.0.3",
     "hasura-cli": "^2.8.4",
     "sequelize-cli": "^6.4.1"

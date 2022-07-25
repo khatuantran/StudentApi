@@ -1,3 +1,10 @@
 table:
   schema: public
   name: StudentEnrolls
+object_relationships:
+  - name: Class
+    using:
+      foreign_key_constraint_on: classId
+  - name: User
+    using:
+      foreign_key_constraint_on: studentId
