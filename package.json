@@ -21,7 +21,6 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
-    "graphql": "^16.5.0",
     "graphql-middleware": "^6.1.31",
     "graphql-shield": "^7.5.0",
     "http-status-code": "^2.1.0",
@@ -37,6 +36,7 @@
     "@types/express": "^4.17.13",
     "@types/http-status-codes": "^1.2.0",
     "@types/node": "^18.0.3",
+    "hasura-cli": "^2.8.4",
     "sequelize-cli": "^6.4.1"
   }
 }

@@ -1,11 +1,11 @@
-import { StatusCodes } from 'http-status-codes'
+// import { StatusCodes } from 'http-status-codes'
 import { Request, Response, NextFunction  } from 'express'
 
 const errorHandlerMiddleware = (err:any, req:Request, res:Response, next:NextFunction) => {
   console.log('middleware error');
   let customError = {
     // set default
-    statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
+    statusCode: err.statusCode || 500,
     msg: err.message || 'Something went wrong try again later',
   }
   // if (err instanceof CustomAPIError) {

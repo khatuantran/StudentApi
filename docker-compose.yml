@@ -36,7 +36,7 @@ services:
     restart: always
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://admin:admin@db:5432/StudentApi
-      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "false" # set to "false" to disable console
       HASURA_GRAPHQL_DEV_MODE: "true" 
       HASURA_GRAPHQL_ENABLE_LOG_TYPES: startup, http-log, webhook-log
       REMOTE_SCHEMA_ENDPOINT: http://student-management:3000/graphql
