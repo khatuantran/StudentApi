@@ -1,1 +1,5 @@
-[]
+- name: student-management
+  definition:
+    url_from_env: REMOTE_SCHEMA_ENDPOINT
+    timeout_seconds: 60
+  comment: ""
