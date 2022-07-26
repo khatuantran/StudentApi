@@ -53,4 +53,4 @@ alter table "public"."Users" add column "name" text
 alter table "public"."Users" drop column "tokenCounter" cascade;
 
 alter table "public"."Users" add column "tokenCounter" integer
- null default '1';
+ null default '0';

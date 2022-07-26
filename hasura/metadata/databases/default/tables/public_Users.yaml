@@ -2,7 +2,7 @@ table:
   schema: public
   name: Users
 array_relationships:
-  - name: Classes
+  - name: User_Classes
     using:
       foreign_key_constraint_on:
         column: studentId
